@@ -18,7 +18,7 @@ To solve that, *Serverito* implement a wrapping layer around ```HttpListener``` 
 Install Serverito via NuGet:
 
 ```
-Install-Package GeonBit.UI
+Install-Package Serverito
 ```
 
 ## Using Serverito
