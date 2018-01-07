@@ -21,6 +21,8 @@ Install Serverito via NuGet:
 Install-Package Serverito
 ```
 
+Or check it out or [nuget.org](https://www.nuget.org/packages/Serverito/).
+
 ## Using Serverito
 
 Lets create a *Serverito* server on localhost, add a test URL, and start listening:
