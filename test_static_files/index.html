@@ -53,10 +53,12 @@
 				<li><a href="/exp/">Test an exception (should print error).</a></li>
 				<li><a href="/static/hello.txt">Test serving static text file.</a></li>
 				<li><a href="/static/test_pic.png">Test serving static picture.</a></li>
-				<li><a href="/static/not_there.txt">Test serving static file that doesn't exist.</a></li>
+				<li><a href="/static/not_there.txt">Test serving static file that doesn't exist (should return 404 not found).</a></li>
 				<li><a href="/anynumber/123/">Test regex URL.</a></li>
-				<li><a href="/anynumber/f/">Test regex URL failure - this should not work.</a></li>
+				<li><a href="/anynumber/f/">Test regex URL mismatch (should return 404 not found).</a></li>
 				<li><a href="/console/">View console prints so far.</a></li>
+				<li><a href="#" onclick="testSendDataToServer();">Test sending data to server (should prompt alert).</a></li>
+				<li><a href="/echo/">Test using GET for a view that only accept POST (should return 404 not found).</a></li>
 			</ul>
 			<p>You should see a dog icon here:</p>
 			<img width="100" src="/static/test_pic.png">
@@ -76,6 +78,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+	<!-- test sending data to server -->
+	<script>
+		function testSendDataToServer() {
+			$.post("/echo/", "qwerty", function(data) {
+				alert("This should say 'qwerty': " + data);
+			});
+		}
+	</script>
+	
 	<!-- update the console every 2 seconds -->
 	<script>
 		setInterval(function() {

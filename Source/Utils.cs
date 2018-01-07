@@ -201,12 +201,16 @@ namespace Serverito
         /// <param name="context">Context to read request input from.</param>
         /// <param name="encoding">Encoding to use.</param>
         /// <returns>Request input as string.</returns>
-        public static string ReadRequestInput(HttpListenerContext context, EncodingType encoding = EncodingType.UTF8)
+        public static string ReadRequestInput(HttpListenerContext context, EncodingType encoding = EncodingType.Default)
         {
-            var inputStream = context.Request.InputStream;
-            byte[] strArr = new byte[inputStream.Length];
-            inputStream.Read(strArr, 0, (int)inputStream.Length);
-            return _encoding[(int)encoding].GetString(strArr);
+            if (encoding == EncodingType.Default)
+            {
+                return new System.IO.StreamReader(context.Request.InputStream, true).ReadToEnd();
+            }
+            else
+            {
+                return new System.IO.StreamReader(context.Request.InputStream, _encoding[(int)encoding]).ReadToEnd();
+            }
         }
 
         /// <summary>

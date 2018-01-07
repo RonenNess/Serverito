@@ -43,6 +43,12 @@ namespace ServeritoTest
                 server.OnMissingFile += (ServeritoContext context) => { PrintConsoleLine("Missing file: " + context.Context.Request.RawUrl); };
                 server.OnUrlMatching += (ServeritoContext context) => { PrintConsoleLine("URL matching: " + context.Context.Request.RawUrl); };
 
+                // on undefined URL or missing file dump "404 not found!" on screen.
+                server.OnMissingFile += server.OnUndefinedURL += (ServeritoContext context) => 
+                {
+                    Utils.WriteToResponse(context.Context, "404 not found!");
+                };
+
                 // add static files
                 server.StaticFilesRootUrl = "/static/";
                 server.StaticFilesPath = "../../test_static_files";
@@ -89,6 +95,13 @@ namespace ServeritoTest
                 server.AddView(new URL("/console/"), (ServeritoContext context) =>
                 {
                     Utils.WriteToResponse(context.Context, consoleString.ToString());
+                });
+
+                // /echo/ return the input we got from POST requests
+                server.AddView(new URL("/echo/", HttpMethods.POST), (ServeritoContext context) =>
+                {
+                    var ret = Utils.ReadRequestInput(context.Context);
+                    Utils.WriteToResponse(context.Context, ret);
                 });
 
                 // open test page in default browser

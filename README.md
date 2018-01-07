@@ -231,6 +231,11 @@ Initial release.
 - Added support in changing static files encoding type.
 - Added charset header to static files we serve.
 
+#### 1.0.0.3
+
+- Improved the way we read requests input to support POST data.
+- Added some tests to the example HTML.
+
 ## Contact
 
 For bug report, questions or feature requests, please use the [GitHub Issues](https://github.com/RonenNess/Serverito/issues/) section.

@@ -66,7 +66,7 @@ namespace Serverito
         /// <summary>
         /// Current version.
         /// </summary>
-        public static readonly string Version = "1.0.0.2";
+        public static readonly string Version = "1.0.0.3";
 
         /// <summary>
         /// Our main listener.
