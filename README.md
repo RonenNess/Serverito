@@ -103,6 +103,14 @@ If file not found, 404 error code will be returned.
 server.SetMimeContentType = false;
 ```
 
+#### Encoding
+
+To choose what encoding type to use with static files, you can set the `StaticFilesEncodingType` property:
+
+```cs
+server.StaticFilesEncodingType = EncodingType.UTF8;
+```
+
 #### Smarter File Handling
 
 By default whenever *Serverito* need to serve a file, it just reads the file bytes and write them to response. If you want to use caching mechanisms or have a more sophisticated logic, you can override the function that reads a file:
@@ -146,6 +154,10 @@ If true, will send data in chunks.
 ##### SetMimeContentType [default: true]
 
 If true, will set content-type automatically for known file types whenever serving static files.
+
+##### StaticFilesEncodingType [default: EncodingType.UTF8]
+
+What encoding type to use for files we serve.
 
 ### Utils
 
@@ -204,6 +216,18 @@ The callbacks you register can control the flow of the request by throwing some 
 ## Example
 
 If you clone this repository and build the project as a console application instead of a class library, you will get a simple example app that renders a test page and defines some test views.
+
+## Changes
+
+#### 1.0.0.1
+
+Initial release.
+
+#### 1.0.0.2
+
+- Fixed bug in setting mime-type automatically.
+- Added support in changing static files encoding type.
+- Added charset header to static files we serve.
 
 ## Contact
 

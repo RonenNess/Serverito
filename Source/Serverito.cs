@@ -66,7 +66,7 @@ namespace Serverito
         /// <summary>
         /// Current version.
         /// </summary>
-        public static readonly string Version = "1.0.0.1";
+        public static readonly string Version = "1.0.0.2";
 
         /// <summary>
         /// Our main listener.
@@ -128,6 +128,22 @@ namespace Serverito
         /// If false, all files will be served with content type of application/octet-stream.
         /// </summary>
         public bool SetMimeContentType = true;
+
+        /// <summary>
+        /// Convert encoding enum to string we need to set in response content type.
+        /// </summary>
+        static readonly string[] _encodingToCharsetString = new string[]
+        {
+            ";charset=utf-8",
+            ";charset=utf-32",
+            ";charset=utf-unicode",
+            "",
+        };
+
+        /// <summary>
+        /// What encoding type to use by default for static files we serve.
+        /// </summary>
+        public EncodingType StaticFilesEncodingType = EncodingType.UTF8;
 
         /// <summary>
         /// Static files root url.
@@ -424,6 +440,12 @@ namespace Serverito
             {
                 context.Context.Response.ContentType = Utils.ExtensionToMimeType(System.IO.Path.GetExtension(path)) ?? 
                     context.Context.Response.ContentType;
+            }
+
+            // set encoding type
+            if (StaticFilesEncodingType != EncodingType.Default)
+            {
+                context.Context.Response.ContentType += _encodingToCharsetString[(int)StaticFilesEncodingType];
             }
 
             // read file into response

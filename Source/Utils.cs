@@ -14,6 +14,32 @@ using System.Collections.Generic;
 namespace Serverito
 {
     /// <summary>
+    /// Different encoding types.
+    /// </summary>
+    public enum EncodingType
+    {
+        /// <summary>
+        /// utf-8 encoding.
+        /// </summary>
+        UTF8,
+
+        /// <summary>
+        /// utf-32 encoding.
+        /// </summary>
+        UTF32,
+
+        /// <summary>
+        /// Unicode encoding.
+        /// </summary>
+        Unicode,
+
+        /// <summary>
+        /// Default system encoding.
+        /// </summary>
+        Default,
+    }
+
+    /// <summary>
     /// Static class with a collection of misc utils.
     /// </summary>
     public static class Utils
@@ -22,6 +48,17 @@ namespace Serverito
         /// A dictionary that convert known file extensions to their corresponding mime content-type.
         /// </summary>
         static Dictionary<string, string> _extensionToContentType = new Dictionary<string, string>();
+
+        /// <summary>
+        /// Convert encoding enum to handling class.
+        /// </summary>
+        static readonly System.Text.Encoding[] _encoding = new System.Text.Encoding[]
+        {
+            System.Text.Encoding.UTF8,
+            System.Text.Encoding.UTF32,
+            System.Text.Encoding.Unicode,
+            System.Text.Encoding.Default,
+        };
 
         /// <summary>
         /// Static constructor to setup few things.
@@ -145,35 +182,42 @@ namespace Serverito
         /// <returns>Content type string for file type, or null if not found.</returns>
         public static string ExtensionToMimeType(string extension)
         {
+            // if we got extension starting with a dot, remove the dot.
+            if (extension[0] == '.')
+                extension = extension.Substring(1);
+
+            // try to get mime type and return it
             string mimeType;
             if (_extensionToContentType.TryGetValue(extension.ToLower(), out mimeType))
                 return mimeType;
+
+            // unknown extension type? return null
             return null;
         }
 
         /// <summary>
         /// Read input from request as string.
-        /// Note: read as UTF-8.
         /// </summary>
         /// <param name="context">Context to read request input from.</param>
+        /// <param name="encoding">Encoding to use.</param>
         /// <returns>Request input as string.</returns>
-        public static string ReadRequestInput(HttpListenerContext context)
+        public static string ReadRequestInput(HttpListenerContext context, EncodingType encoding = EncodingType.UTF8)
         {
             var inputStream = context.Request.InputStream;
             byte[] strArr = new byte[inputStream.Length];
             inputStream.Read(strArr, 0, (int)inputStream.Length);
-            return System.Text.Encoding.UTF8.GetString(strArr);
+            return _encoding[(int)encoding].GetString(strArr);
         }
 
         /// <summary>
         /// Convert string to bytes array.
-        /// Note: write as UTF-8.
         /// </summary>
         /// <param name="data">String to convert.</param>
+        /// <param name="encoding">Encoding to use.</param>
         /// <returns>String bytes array.</returns>
-        public static byte[] StringToBytes(string data)
+        public static byte[] StringToBytes(string data, EncodingType encoding = EncodingType.UTF8)
         {
-            return System.Text.Encoding.UTF8.GetBytes(data);
+            return _encoding[(int)encoding].GetBytes(data);
         }
 
         /// <summary>
