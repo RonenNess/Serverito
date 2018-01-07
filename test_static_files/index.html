@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Serverito test HTML.">
+    <meta name="author" content="Ronen Ness">
+
+    <title>Served By Serverito!</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+		
+			<!-- header -->
+			<h1>Success!</h1>
+			<p>This HTML file is served by the 'Serverito' app.</p>
+			
+			<!-- some useful links -->
+			<h2>Links</h2>
+			<p>Some interesting links related to this project:</p>
+			<ul style="font-size:1.2em">
+				<li><a href="https://github.com/RonenNess/Serverito">Project git</a></li>
+				<li><a href="https://github.com/RonenNess/Serverito/blob/master/README.md">Project ReadMe</a></li>
+				<li><a href="https://www.nuget.org/packages/Serverito/">NuGet page</a></li>
+			</ul>
+			
+			<!-- show some test links -->
+			<h2>Tests</h2>
+			<p>The following are some links to test different components of Serverito locally:</p>
+			<ul style="font-size:1.2em">
+				<li><a href="/hello/">Test simple writing to output.</a></li>
+				<li><a href="/hello">Test callback to force trailing slash.</a></li>
+				<li><a href="/exp/">Test an exception (should print error).</a></li>
+				<li><a href="/static/hello.txt">Test serving static text file.</a></li>
+				<li><a href="/static/test_pic.png">Test serving static picture.</a></li>
+				<li><a href="/static/not_there.txt">Test serving static file that doesn't exist.</a></li>
+				<li><a href="/anynumber/123/">Test regex URL.</a></li>
+				<li><a href="/anynumber/f/">Test regex URL failure - this should not work.</a></li>
+				<li><a href="/console/">View console prints so far.</a></li>
+			</ul>
+			<p>You should see a dog icon here:</p>
+			<img width="100" src="/static/test_pic.png">
+			
+			<!-- show a console that copy the exe console -->
+			<h2>Console</h2>
+			<p>The textarea below should update every few seconds and show what the exe console is currently showing. It updates via a simple view we created in server:</p>
+			<div class="form-group">
+			  <label for="console">Console:</label>
+			  <textarea class="form-control" rows="12" id="console" style="resize:none;" readonly></textarea>
+			</div>
+        </div>
+    </div>
+
+	<!-- Jquery and Bootstrap js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<!-- update the console every 2 seconds -->
+	<script>
+		setInterval(function() {
+			$.get("/console/", function(data) {
+				$("#console").val(data);
+				$('#console').scrollTop($('#console')[0].scrollHeight);
+			});
+		}, 2000);
+	</script>
+	
+</body>
+
+</html>

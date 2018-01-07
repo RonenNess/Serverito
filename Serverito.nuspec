@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+	<id>Serverito</id>
+	<version>1.0.0.1</version>
+	<authors>Ronen Ness</authors>
+	<owners>RonenNess</owners>
+	<title>Serverito</title>
+	<summary>Serverito implement a wrapping layer around the .Net HttpListener and provide a very easy API while doing most of the tedious work for you.
+
+It takes minutes to build web apps with Serverito!</summary>
+	<licenseUrl>https://en.wikipedia.org/wiki/MIT_License</licenseUrl>
+	<projectUrl>https://github.com/RonenNess/Serverito</projectUrl>
+	<requireLicenseAcceptance>false</requireLicenseAcceptance>
+	<releaseNotes>First release.</releaseNotes>
+	<description>Http framework for C# web apps.</description>
+	<tags>web server httplistener http api</tags>
+	<dependencies>
+	</dependencies>
+  </metadata>
+  <files>
+	<file src="readme.txt" target="" />
+	<file src="bin\Release\Serverito.dll" target="lib\serverito\Serverito.dll"/>
+	<file src="bin\Release\Serverito.XML" target="lib\serverito\Serverito.XML"/>
+  </files>
+</package>
