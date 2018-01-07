@@ -157,9 +157,9 @@ namespace Serverito
         /// </summary>
         /// <param name="context">Context to get IP from.</param>
         /// <returns>IP as string.</returns>
-        public static string GetIp(HttpListenerContext context)
+        public static string GetIpString(HttpListenerContext context)
         {
-            return context.Request.RemoteEndPoint.ToString();
+            return context.Request.RemoteEndPoint.Address.ToString();
         }
 
         /// <summary>

@@ -235,6 +235,7 @@ Initial release.
 
 - Improved the way we read requests input to support POST data.
 - Added some tests to the example HTML.
+- Improved function to get source IP as string from request.
 
 ## Contact
 
