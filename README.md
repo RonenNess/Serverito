@@ -21,7 +21,7 @@ Install Serverito via NuGet:
 Install-Package Serverito
 ```
 
-Or check it out or [nuget.org](https://www.nuget.org/packages/Serverito/).
+Or check it out on [nuget.org](https://www.nuget.org/packages/Serverito/).
 
 ## Using Serverito
 
