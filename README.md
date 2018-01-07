@@ -111,6 +111,8 @@ To choose what encoding type to use with static files, you can set the `StaticFi
 server.StaticFilesEncodingType = EncodingType.UTF8;
 ```
 
+This will set the 'charset' property in the content-type header.
+
 #### Smarter File Handling
 
 By default whenever *Serverito* need to serve a file, it just reads the file bytes and write them to response. If you want to use caching mechanisms or have a more sophisticated logic, you can override the function that reads a file:

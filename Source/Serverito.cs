@@ -141,9 +141,10 @@ namespace Serverito
         };
 
         /// <summary>
-        /// What encoding type to use by default for static files we serve.
+        /// What encoding type to set by default for static files we serve.
+        /// Choose 'Default' if you don't want to set 'charset' in content-type at all.
         /// </summary>
-        public EncodingType StaticFilesEncodingType = EncodingType.UTF8;
+        public EncodingType StaticFilesEncodingType = EncodingType.Default;
 
         /// <summary>
         /// Static files root url.

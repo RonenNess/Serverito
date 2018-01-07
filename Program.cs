@@ -38,7 +38,7 @@ namespace ServeritoTest
                 server.OnFinishHandlingRequest += (ServeritoContext context) => { PrintConsoleLine("Finished handling request: " + context.Context.Request.RawUrl); };
                 server.OnNewRawRequest += (ServeritoContext context) => { PrintConsoleLine("\nNEW RAW REQUEST: " + context.Context.Request.RawUrl); };
                 server.OnPassingRequestToView += (ServeritoContext context) => { PrintConsoleLine("Before passing to view: " + context.Context.Request.RawUrl); };
-                server.OnServingFile += (ServeritoContext context) => { PrintConsoleLine("Serving file: " + context.Context.Request.RawUrl); };
+                server.OnServingFile += (ServeritoContext context) => { PrintConsoleLine("Serving file: '" + context.Context.Request.RawUrl + "' with content-type: " + context.Context.Response.ContentType); };
                 server.OnUndefinedURL += (ServeritoContext context) => { PrintConsoleLine("Undefined URL: " + context.Context.Request.RawUrl); };
                 server.OnMissingFile += (ServeritoContext context) => { PrintConsoleLine("Missing file: " + context.Context.Request.RawUrl); };
                 server.OnUrlMatching += (ServeritoContext context) => { PrintConsoleLine("URL matching: " + context.Context.Request.RawUrl); };
