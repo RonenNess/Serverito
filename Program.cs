@@ -104,6 +104,12 @@ namespace ServeritoTest
                     Utils.WriteToResponse(context.Context, ret);
                 });
 
+                // /kill/ will stop listening and finish app.
+                server.AddView(new URL("/kill/"), (ServeritoContext context) =>
+                {
+                    server.Stop();
+                });
+
                 // open test page in default browser
                 System.Diagnostics.Process.Start(host);
 

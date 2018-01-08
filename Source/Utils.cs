@@ -163,6 +163,26 @@ namespace Serverito
         }
 
         /// <summary>
+        /// Get ip address (as ipv4 string) from context.
+        /// </summary>
+        /// <param name="context">Context to get IP from.</param>
+        /// <returns>IP as string.</returns>
+        public static string GetIpv4String(HttpListenerContext context)
+        {
+            return context.Request.RemoteEndPoint.Address.MapToIPv4().ToString();
+        }
+
+        /// <summary>
+        /// Get ip address (as ipv6 string) from context.
+        /// </summary>
+        /// <param name="context">Context to get IP from.</param>
+        /// <returns>IP as string.</returns>
+        public static string GetIpv6String(HttpListenerContext context)
+        {
+            return context.Request.RemoteEndPoint.Address.MapToIPv6().ToString();
+        }
+
+        /// <summary>
         /// Try to close a context response, ignore if fail.
         /// </summary>
         /// <param name="context">Context response to close.</param>

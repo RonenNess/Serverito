@@ -238,11 +238,27 @@ namespace Serverito
         }
 
         /// <summary>
+        /// Serverito destructor.
+        /// </summary>
+        ~ServeritoListener()
+        {
+            _listener.Close();
+        }
+
+        /// <summary>
         /// Stop listening.
         /// </summary>
         public void Stop()
         {
             _listener.Stop();
+        }
+
+        /// <summary>
+        /// Abort immediately, dumping all messages in queue.
+        /// </summary>
+        public void Abort()
+        {
+            _listener.Abort();
         }
 
         /// <summary>
